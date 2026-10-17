@@ -8,7 +8,9 @@
 % un faux gras en italique selon le cache de polices. Ailleurs (Linux, CI) : TeX Gyre Termes.
 \IfFontExistsTF{timesbd.ttf}
   {\setmainfont{times.ttf}[BoldFont=timesbd.ttf,ItalicFont=timesi.ttf,BoldItalicFont=timesbi.ttf]}
-  {\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}}
+  {\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}
+    {\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,
+                                 ItalicFont=*-italic,BoldItalicFont=*-bolditalic]}}
 \usepackage{polyglossia}
 \setdefaultlanguage{french}
 

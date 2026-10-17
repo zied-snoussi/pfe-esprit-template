@@ -1,0 +1,36 @@
+% !TEX root = ../main.tex
+\chapter{Architecture et conception}\label{ch:conception}
+
+\section*{Introduction}
+Ce chapitre présente l'architecture globale de \nomprojet, puis sa conception détaillée : diagramme de classes, diagramme de séquence, diagramme d'activité et diagramme d'états.
+
+\section{Architecture globale}
+La figure~\ref{fig:architecture} montre l'architecture en couches de la plateforme. Les applications React consomment une API REST Spring Boot, protégée par des jetons émis par Keycloak. Les rappels sont publiés dans RabbitMQ et envoyés par un service de notification indépendant.
+
+\insererfigure{architecture-globale.png}{Architecture globale de \nomprojet}{fig:architecture}
+
+\subsection{Isolation des cliniques}
+Nous avons retenu la stratégie de la colonne \texttt{clinic\_id} (tableau~\ref{tab:multi-location}). Chaque requête porte l'identifiant de la clinique extrait du jeton ; un filtre Hibernate l'ajoute automatiquement à toutes les requêtes, et un test d'intégration vérifie qu'aucune donnée ne fuit d'une clinique à l'autre.
+
+\section{Conception détaillée}
+
+\subsection{Diagramme de classes}
+La figure~\ref{fig:classes} présente les classes du domaine. Une clinique emploie des praticiens ; chaque praticien possède un agenda hebdomadaire, à partir duquel sont générés les créneaux réservables.
+
+\insererfigurepaysage{uml/02-diagramme-classes.png}{Diagramme de classes d'analyse}{fig:classes}
+
+\subsection{Diagramme de séquence : prise de rendez-vous}
+La figure~\ref{fig:seq-rdv} décrit la réservation d'un créneau par un patient. Le verrou optimiste sur le créneau empêche deux patients de réserver le même horaire.
+
+\insererfigure{uml/03-sequence-prise-rdv.png}{Diagramme de séquence : prise de rendez-vous}{fig:seq-rdv}
+
+\subsection{Diagramme d'activité : prise de rendez-vous}
+\insererfigure[0.85]{uml/04-activite-prise-rdv.png}{Diagramme d'activité : prise de rendez-vous}{fig:act-rdv}
+
+\subsection{Diagramme d'états : rendez-vous}
+La figure~\ref{fig:etats-rdv} présente le cycle de vie d'un rendez-vous, de sa création à sa clôture.
+
+\insererfigure[0.9]{uml/05-etats-rendez-vous.png}{Diagramme d'états d'un rendez-vous}{fig:etats-rdv}
+
+\section*{Conclusion}
+Ce chapitre a présenté l'architecture de \nomprojet{} et sa conception détaillée. Le chapitre suivant décrit la réalisation de la solution, release par release.

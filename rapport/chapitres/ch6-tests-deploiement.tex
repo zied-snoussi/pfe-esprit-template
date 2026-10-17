@@ -1,0 +1,47 @@
+% !TEX root = ../main.tex
+\chapter{Tests, qualité et déploiement}\label{ch:tests}
+
+\section*{Introduction}
+Ce chapitre présente la stratégie de test, la chaîne d'intégration et de livraison continues, puis l'architecture de déploiement de la plateforme.
+
+\section{Stratégie de test}
+\begin{table}[H]\centering
+\caption{Niveaux de test}\label{tab:tests}
+\begin{tabularx}{\linewidth}{llX}
+\toprule
+\textbf{Niveau} & \textbf{Outils} & \textbf{Périmètre} \\
+\midrule
+Unitaire & JUnit 5, Mockito, Vitest & Règles métier : génération des créneaux, chevauchements, annulation. \\
+Intégration & Testcontainers & Dépôts JPA sur un vrai PostgreSQL, isolation des cliniques. \\
+Bout en bout & Playwright & Parcours patient complet : recherche, réservation, annulation. \\
+Charge & k6 & 200 utilisateurs simultanés sur la recherche de créneaux. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Résultats}
+\begin{table}[H]\centering
+\caption{Résultats des tests (valeurs d'exemple)}\label{tab:resultats}
+\begin{tabularx}{\linewidth}{Xll}
+\toprule
+\textbf{Indicateur} & \textbf{Objectif} & \textbf{Mesure} \\
+\midrule
+Couverture du code back-end & $\geq$ 80 \% & 84 \% \\
+Tests bout en bout réussis & 100 \% & 100 \% (36/36) \\
+Temps de réponse (95\textsuperscript{e} centile) & < 500 ms & 310 ms \\
+Vulnérabilités critiques (Trivy) & 0 & 0 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\todo{Remplacer par vos mesures réelles.}
+
+\section{Intégration et livraison continues}
+La figure~\ref{fig:cicd} présente la chaîne CI/CD. Chaque \textit{pull request} déclenche la compilation, les tests et l'analyse de qualité ; la fusion sur la branche principale construit les images Docker et les déploie sur le cluster.
+
+\insererfigure{pipeline-ci-cd.png}{Chaîne d'intégration et de livraison continues}{fig:cicd}
+
+\section{Déploiement}
+\insererfigure{uml/06-deploiement.png}{Diagramme de déploiement}{fig:deploiement}
+
+\section*{Conclusion}
+Ce chapitre a présenté la stratégie de test, les résultats obtenus, la chaîne CI/CD et l'architecture de déploiement de \nomprojet.

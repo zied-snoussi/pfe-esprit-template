@@ -1,0 +1,107 @@
+% !TEX root = ../main.tex
+\chapter{Contexte général du projet}\label{ch:contexte}
+
+\section*{Introduction}
+Ce chapitre présente l'organisme d'accueil et le cadre du projet. Il décrit ensuite l'existant et ses limites, formule la problématique, puis présente la solution proposée, la méthodologie de travail et le planning prévisionnel.
+
+\section{Présentation de l'organisme d'accueil}
+\entreprise{} est une entreprise de services numériques fondée en 2018 et basée à Tunis. Elle compte une quarantaine de collaborateurs et développe des applications web et mobiles sur mesure pour des clients du secteur de la santé et de la distribution. \todo{Remplacer par la présentation réelle de votre entreprise : historique, effectif, clients, organigramme.}
+
+\subsection{Activités et services}
+Le tableau~\ref{tab:services} résume les principaux pôles d'activité de l'entreprise.
+
+\begin{table}[H]\centering
+\caption{Pôles d'activité de \entreprise}\label{tab:services}
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Pôle} & \textbf{Description} \\
+\midrule
+Développement web & Applications métier, portails clients, plateformes SaaS. \\
+Développement mobile & Applications Android et iOS natives ou multiplateformes. \\
+Conseil et DevOps & Audit d'architecture, conteneurisation, mise en place de chaînes CI/CD. \\
+Maintenance & Tierce maintenance applicative et support de niveau 2. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cadre du projet}
+Ce projet est réalisé dans le cadre du stage de fin d'études en vue de l'obtention du diplôme national d'ingénieur en informatique à ESPRIT. Il répond à un besoin exprimé par plusieurs cliniques partenaires de \entreprise, qui souhaitent proposer la prise de rendez-vous en ligne à leurs patients.
+
+\section{Étude de l'existant}
+Aujourd'hui, les cliniques partenaires gèrent leurs rendez-vous de trois façons : un registre papier au secrétariat, un tableur partagé entre les secrétaires, ou un logiciel de cabinet installé sur un seul poste. Le patient appelle la clinique, la secrétaire cherche un créneau libre et le note à la main.
+
+\subsection{Critique de l'existant}
+Cette organisation présente plusieurs limites :
+\begin{itemize}
+  \item \textbf{Disponibilité} : la réservation n'est possible qu'aux heures d'ouverture du secrétariat ;
+  \item \textbf{Charge du secrétariat} : une part importante de la journée est consacrée aux appels ;
+  \item \textbf{Rendez-vous non honorés} : sans rappel, une partie des patients oublie leur rendez-vous ; \todo{citer un chiffre mesuré dans l'entreprise}
+  \item \textbf{Absence d'indicateurs} : la direction ne connaît ni le taux d'occupation ni le délai moyen d'attente ;
+  \item \textbf{Données dispersées} : chaque clinique possède ses propres fichiers, sans sauvegarde centralisée.
+\end{itemize}
+
+\section{Problématique}
+Comment offrir à plusieurs cliniques, sur une même plateforme, un service de prise de rendez-vous en ligne fiable et sécurisé, qui réduise la charge du secrétariat et les rendez-vous non honorés, tout en garantissant l'isolation et la confidentialité des données de chaque établissement ?
+
+\section{Solution proposée}
+Nous proposons \nomprojet, une plateforme SaaS multi-cliniques composée de trois espaces :
+\begin{itemize}
+  \item un \textbf{espace patient} pour rechercher un praticien, réserver, déplacer ou annuler un rendez-vous ;
+  \item un \textbf{espace clinique} pour gérer les praticiens, leurs agendas, les rendez-vous et les rappels ;
+  \item une \textbf{console d'administration} pour créer les cliniques, gérer les abonnements et superviser la plateforme.
+\end{itemize}
+
+\section{Méthodologie de travail}
+\begin{definition}{Scrum}
+Scrum est un cadre de travail agile dans lequel le produit est construit par itérations courtes et de durée fixe, appelées sprints, à partir d'un backlog priorisé par le \textit{Product Owner}~\cite{scrumguide}.
+\end{definition}
+
+Nous avons adopté Scrum avec des sprints de deux semaines. Le tableau~\ref{tab:roles-scrum} présente la répartition des rôles.
+
+\begin{table}[H]\centering
+\caption{Rôles Scrum dans le projet}\label{tab:roles-scrum}
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Rôle} & \textbf{Personne} \\
+\midrule
+\textit{Product Owner} & \encadrantentreprise \\
+\textit{Scrum Master} & Chef de projet de \entreprise \\
+Équipe de développement & \etudiant{} (stagiaire PFE) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Planning prévisionnel}
+La figure~\ref{fig:gantt} présente le planning prévisionnel du stage sur 26 semaines. Le planning détaillé figure en annexe~\ref{annexe:planning}.
+
+\begin{figure}[H]\centering
+\resizebox{\linewidth}{!}{%
+\begin{ganttchart}[
+    hgrid, vgrid={*1{draw=black!10}},
+    x unit=0.55cm, y unit chart=0.62cm,
+    title height=1, bar height=0.55,
+    bar/.append style={fill=principale!60},
+    group/.append style={fill=accent!80},
+    milestone/.append style={fill=red!70},
+    bar label font=\small, group label font=\small\bfseries, milestone label font=\small\itshape
+  ]{1}{26}
+  \gantttitlelist{1,...,26}{1} \\
+  \ganttbar{Sprint 0 : étude, état de l'art, cahier des charges}{1}{2} \\
+  \ganttgroup{Release 1 : socle et agendas}{3}{10} \\
+  \ganttbar{Authentification, cliniques, praticiens, créneaux}{3}{10} \\
+  \ganttgroup{Release 2 : réservation et rappels}{11}{18} \\
+  \ganttbar{Espace patient, réservation, notifications}{11}{18} \\
+  \ganttgroup{Release 3 : pilotage et mise en production}{19}{24} \\
+  \ganttbar{Tableau de bord, abonnements, Kubernetes}{19}{24} \\
+  \ganttbar{Recette, rapport, soutenance}{25}{26} \\
+  \ganttmilestone{Plan de travail validé}{3} \\
+  \ganttmilestone{1\textsuperscript{re} restitution}{9} \\
+  \ganttmilestone{Version 0 du rapport}{18} \\
+  \ganttmilestone{2\textsuperscript{e} restitution}{21} \\
+  \ganttmilestone{Version finale}{26}
+\end{ganttchart}}
+\caption{Planning prévisionnel du stage (en semaines)}\label{fig:gantt}
+\end{figure}
+
+\section*{Conclusion}
+Ce chapitre a présenté l'organisme d'accueil, le cadre du projet et l'existant. Il a montré que la gestion manuelle des rendez-vous limite la disponibilité du service et ne fournit aucun indicateur. Avant de spécifier la solution, le chapitre suivant étudie l'état de l'art et les solutions du marché.

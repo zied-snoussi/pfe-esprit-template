@@ -1,0 +1,26 @@
+# Dépendances
+node_modules/
+__pycache__/
+.venv/
+
+# Fichiers auxiliaires LaTeX
+rapport/*.aux
+rapport/**/*.aux
+rapport/*.bbl
+rapport/*.blg
+rapport/*.log
+rapport/*.out
+rapport/*.toc
+rapport/*.lof
+rapport/*.lot
+rapport/*.synctex.gz
+rapport/*.fls
+rapport/*.fdb_latexmk
+rapport/*.xdv
+
+# Fichiers Office temporaires
+~$*
+
+# Secrets et fichiers locaux
+.env
+.claude/settings.local.json

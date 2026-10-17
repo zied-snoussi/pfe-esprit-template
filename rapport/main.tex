@@ -1,0 +1,51 @@
+% ============================================================
+%  Rapport de stage de fin d'études (PFE) -- modèle ESPRIT
+%  Compilation : XeLaTeX -> BibTeX -> XeLaTeX x2   (voir README.md)
+%  Toutes les informations personnelles sont dans config/infos.tex
+% ============================================================
+\documentclass[12pt,a4paper,oneside]{report}
+\input{config/preamble}
+\input{config/infos}
+
+\begin{document}
+
+% ---------- Pages liminaires ----------
+\input{pages/page-de-garde}
+\pagestyle{liminaire}
+\pagenumbering{roman}
+\input{pages/dedicace}
+\input{pages/remerciements}
+\tableofcontents
+\listoffigures
+\listoftables
+\input{pages/abreviations}
+
+% ---------- Corps du rapport ----------
+\cleardoublepage
+\pagenumbering{arabic}
+\pagestyle{corps}\corpstrue
+\input{chapitres/introduction}
+\input{chapitres/ch1-contexte}
+\input{chapitres/ch2-etat-de-l-art}
+\input{chapitres/ch3-analyse-besoins}
+\input{chapitres/ch4-architecture-conception}
+\input{chapitres/ch5-realisation}
+\input{chapitres/ch6-tests-deploiement}
+\input{chapitres/conclusion}
+
+% ---------- Bibliographie / Netographie ----------
+\cleardoublepage
+\phantomsection\addcontentsline{toc}{chapter}{Bibliographie et netographie}
+\nocite{*}
+\bibliographystyle{plainnat}
+\bibliography{bibliographie}
+
+% ---------- Annexes ----------
+\appendix
+\input{annexes/annexe-a-planning-detaille}
+\input{annexes/annexe-b-configuration}
+
+% ---------- Quatrième de couverture ----------
+\input{pages/resume}
+
+\end{document}

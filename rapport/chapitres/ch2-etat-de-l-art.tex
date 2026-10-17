@@ -1,0 +1,72 @@
+% !TEX root = ../main.tex
+\chapter{État de l'art et choix technologiques}\label{ch:etat-art}
+
+\section*{Introduction}
+Ce chapitre définit les concepts clés du projet, compare les solutions de prise de rendez-vous existantes, puis justifie les choix technologiques retenus.
+
+\section{Concepts clés}
+\begin{definition}{Logiciel en tant que service (SaaS)}
+Modèle de distribution dans lequel l'application est hébergée par l'éditeur et utilisée par ses clients à travers le web, sur abonnement, sans installation locale.
+\end{definition}
+
+\begin{definition}{Multi-location}
+Architecture dans laquelle une seule instance de l'application sert plusieurs clients (les «~locataires~», ici les cliniques), en isolant strictement leurs données.
+\end{definition}
+
+\subsection{Stratégies de multi-location}
+Le tableau~\ref{tab:multi-location} compare les trois stratégies d'isolation des données les plus répandues.
+
+\begin{table}[H]\centering
+\caption{Stratégies d'isolation des données}\label{tab:multi-location}
+\begin{tabularx}{\linewidth}{lXXl}
+\toprule
+\textbf{Stratégie} & \textbf{Avantages} & \textbf{Inconvénients} & \textbf{Coût} \\
+\midrule
+Base par locataire & Isolation maximale & Exploitation lourde & Élevé \\
+Schéma par locataire & Bon compromis & Migrations multipliées & Moyen \\
+Colonne \texttt{clinic\_id} & Simple, économique & Isolation à garantir dans le code & Faible \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Étude des solutions existantes}
+Nous avons étudié trois solutions du marché selon des critères définis avec l'encadrant entreprise (tableau~\ref{tab:benchmark}). \todo{Remplacer « Solution A/B/C » par les vrais produits étudiés et citer leurs sites dans la bibliographie.}
+
+\begin{table}[H]\centering
+\caption{Comparaison des solutions existantes}\label{tab:benchmark}
+\begin{tabularx}{\linewidth}{Xcccc}
+\toprule
+\textbf{Critère} & \textbf{Solution A} & \textbf{Solution B} & \textbf{Solution C} & \textbf{\nomprojet} \\
+\midrule
+Réservation en ligne 24 h/24 & \checkmark & \checkmark & \checkmark & \checkmark \\
+Multi-cliniques & \checkmark & -- & \checkmark & \checkmark \\
+Rappels SMS & \checkmark & \checkmark & -- & \checkmark \\
+Interface en arabe & -- & -- & -- & \checkmark \\
+Hébergement des données en Tunisie & -- & -- & -- & \checkmark \\
+Tarif adapté au marché local & -- & \checkmark & -- & \checkmark \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Choix technologiques}
+Le tableau~\ref{tab:choix} résume les technologies retenues et la raison de chaque choix.
+
+\begin{table}[H]\centering
+\caption{Choix technologiques}\label{tab:choix}
+\begin{tabularx}{\linewidth}{llX}
+\toprule
+\textbf{Couche} & \textbf{Technologie} & \textbf{Justification} \\
+\midrule
+Back-end & Spring Boot 3 (Java 21) & Maîtrise de l'équipe, écosystème mature, sécurité intégrée~\cite{springboot}. \\
+Front-end & React 18 + TypeScript & Composants réutilisables, typage statique~\cite{react}. \\
+Base de données & PostgreSQL 16 & Robustesse, contraintes d'intégrité, index partiels~\cite{postgresql}. \\
+Authentification & Keycloak & OIDC standard, gestion des rôles, fédération d'identités. \\
+Messagerie & RabbitMQ & Envoi asynchrone des rappels, reprise en cas d'échec. \\
+Conteneurs & Docker, Kubernetes & Déploiement reproductible, montée en charge~\cite{kubernetes}. \\
+CI/CD & GitHub Actions & Intégré au dépôt, gratuit pour le projet. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section*{Conclusion}
+Ce chapitre a défini les concepts du projet, comparé les solutions du marché et justifié nos choix technologiques. Aucune des solutions étudiées ne réunit le multi-cliniques, l'arabe et l'hébergement local. Le chapitre suivant spécifie les besoins de \nomprojet.

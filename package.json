@@ -1,0 +1,12 @@
+{
+  "name": "pfe-esprit-template",
+  "private": true,
+  "description": "Outils de génération des figures du modèle de PFE (draw.io et Excalidraw rendus par Chrome)",
+  "scripts": {
+    "diagrammes": "python diagrammes/_source/build_diagrams.py && node diagrammes/_source/render.js",
+    "figures": "node rapport/figures/_source/render.js rapport/figures"
+  },
+  "dependencies": {
+    "playwright-core": "1.50.1"
+  }
+}

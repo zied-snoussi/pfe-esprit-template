@@ -1,0 +1,45 @@
+name: Livrables
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  rapport:
+    name: Rapport LaTeX
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compiler le rapport (XeLaTeX + BibTeX)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: rapport
+          latexmk_use_xelatex: true
+      - name: Vérifier les références
+        run: |
+          if grep -E "^!|LaTeX Warning: (Reference|Citation)" rapport/main.log; then exit 1; fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rapport-pdf
+          path: rapport/main.pdf
+
+  documents:
+    name: Cahier des charges et présentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python cahier/build_cahier_docx.py
+      - run: python presentation/build_deck.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cahier-et-presentation
+          path: |
+            cahier/Cahier-des-charges.docx
+            presentation/Presentation.pptx

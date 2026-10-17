@@ -1,0 +1,40 @@
+% Page de garde -- à remplacer par le modèle officiel ESPRIT s'il est fourni
+% (déposer le PDF du modèle dans pages/ et utiliser \includepdf si besoin).
+\begin{titlepage}
+\centering
+\begin{minipage}[c]{0.45\linewidth}\raggedright
+  \IfFileExists{figures/logos/esprit.png}{\includegraphics[height=2cm]{logos/esprit.png}}{\fbox{\parbox[c][2cm][c]{4cm}{\centering Logo ESPRIT}}}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.45\linewidth}\raggedleft
+  \IfFileExists{figures/logos/entreprise.png}{\includegraphics[height=1.3cm]{logos/entreprise.png}}{\fbox{\parbox[c][2cm][c]{4cm}{\centering Logo entreprise}}}
+\end{minipage}
+
+\vspace{1.2cm}
+{\large\textsc{École Supérieure Privée d'Ingénierie et de Technologies}}\\[2pt]
+{\large ESPRIT}
+
+\vspace{1.5cm}
+{\Large\bfseries Rapport de stage de fin d'études}\\[6pt]
+{\large en vue de l'obtention du\\ \textbf{Diplôme National d'Ingénieur en Informatique}}\\[4pt]
+{\normalsize Spécialité : \specialite}
+
+\vspace{1.4cm}
+\rule{\linewidth}{0.8pt}\\[10pt]
+{\fontsize{24}{29}\selectfont\bfseries \titrerapport\par}
+\vspace{6pt}
+\rule{\linewidth}{0.8pt}
+
+\vspace{1.4cm}
+{\large Réalisé par : \textbf{\etudiant}}
+
+\vspace{1cm}
+\begin{tabular}{rl}
+  Encadrant entreprise : & \encadrantentreprise \\[3pt]
+  Encadrant académique : & \encadrantacademique \\
+\end{tabular}
+
+\vfill
+{\large Organisme d'accueil : \textbf{\entreprise}}\\[4pt]
+Stage du \datedebut{} au \datefin\\[10pt]
+{\large Année universitaire \anneeuniv}
+\end{titlepage}

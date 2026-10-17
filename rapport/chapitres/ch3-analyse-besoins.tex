@@ -1,0 +1,93 @@
+% !TEX root = ../main.tex
+\chapter{Analyse et spécification des besoins}\label{ch:besoins}
+
+\section*{Introduction}
+Ce chapitre identifie les acteurs de la plateforme, puis présente ses besoins fonctionnels et non fonctionnels. Il se termine par le diagramme de cas d'utilisation global et le backlog du produit. Le détail des exigences figure dans le cahier des charges.
+
+\section{Identification des acteurs}
+\begin{table}[H]\centering
+\caption{Acteurs de la plateforme}\label{tab:acteurs}
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Acteur} & \textbf{Rôle} \\
+\midrule
+Patient & Recherche un praticien, réserve, déplace ou annule un rendez-vous, consulte son historique. \\
+Secrétaire & Gère les agendas des praticiens de sa clinique, confirme et déplace les rendez-vous. \\
+Praticien & Définit ses horaires et ses absences, consulte son planning du jour. \\
+Administrateur clinique & Gère les praticiens, les secrétaires, les motifs de consultation et l'abonnement de la clinique. \\
+Super-administrateur & Membre de \entreprise{} : crée les cliniques, gère les offres et supervise la plateforme. \\
+Service de notification & Système externe qui envoie les SMS et les e-mails de rappel. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Besoins fonctionnels}
+\begin{longtable}{p{3.2cm}p{11.4cm}}
+\caption{Besoins fonctionnels par module}\label{tab:besoins}\\
+\toprule
+\textbf{Module} & \textbf{Besoins principaux} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Module} & \textbf{Besoins principaux} \\
+\midrule
+\endhead
+Authentification & Inscription du patient, connexion, mot de passe oublié, second facteur pour le personnel. \\
+Cliniques & Création d'une clinique, paramètres (adresse, horaires, logo), gestion du personnel et des rôles. \\
+Agendas & Horaires hebdomadaires des praticiens, absences, durée des créneaux par motif de consultation. \\
+Réservation & Recherche par spécialité et par ville, choix d'un créneau, confirmation, déplacement, annulation. \\
+Rappels & Rappel automatique 24 h avant le rendez-vous par SMS et par e-mail, confirmation de présence. \\
+Tableau de bord & Taux d'occupation, rendez-vous non honorés, délai moyen d'attente, export CSV. \\
+Abonnements & Offres mensuelles par nombre de praticiens, période d'essai, suspension en cas d'impayé. \\
+\bottomrule
+\end{longtable}
+
+\section{Besoins non fonctionnels}
+\begin{table}[H]\centering
+\caption{Besoins non fonctionnels}\label{tab:bnf}
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Besoin} & \textbf{Exigence} \\
+\midrule
+Sécurité & Données de santé chiffrées en transit et au repos ; contrôle d'accès par rôles. \\
+Isolation & Une clinique ne peut jamais lire les données d'une autre clinique. \\
+Performance & Recherche de créneaux en moins de 500 ms pour 95 \% des requêtes. \\
+Disponibilité & 99,5 \% par mois, hors maintenance planifiée. \\
+Accessibilité & Écrans conformes WCAG 2.2 niveau AA~\cite{wcag22}. \\
+Internationalisation & Français, anglais et arabe (écriture de droite à gauche). \\
+Conformité & Respect de la loi tunisienne sur la protection des données personnelles. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Diagramme de cas d'utilisation global}
+La figure~\ref{fig:cu-global} présente les cas d'utilisation de la plateforme et leurs relations.
+
+\insererfigure[0.9]{uml/01-cas-utilisation-global.png}{Diagramme de cas d'utilisation global}{fig:cu-global}
+
+\section{Backlog du produit}
+Le tableau~\ref{tab:backlog} présente un extrait du backlog, priorisé avec la méthode MoSCoW.
+
+\begin{longtable}{p{1cm}p{9.4cm}p{1.6cm}p{2cm}}
+\caption{Extrait du backlog du produit}\label{tab:backlog}\\
+\toprule
+\textbf{ID} & \textbf{Histoire utilisateur} & \textbf{Priorité} & \textbf{Release} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{ID} & \textbf{Histoire utilisateur} & \textbf{Priorité} & \textbf{Release} \\
+\midrule
+\endhead
+US1 & En tant que patient, je veux créer un compte afin de réserver en ligne. & Must & R1 \\
+US2 & En tant qu'administrateur clinique, je veux ajouter un praticien afin de publier son agenda. & Must & R1 \\
+US3 & En tant que praticien, je veux définir mes horaires afin de générer mes créneaux. & Must & R1 \\
+US4 & En tant que patient, je veux réserver un créneau libre afin d'éviter un appel. & Must & R2 \\
+US5 & En tant que patient, je veux recevoir un rappel afin de ne pas oublier mon rendez-vous. & Should & R2 \\
+US6 & En tant que secrétaire, je veux déplacer un rendez-vous afin de gérer une urgence. & Should & R2 \\
+US7 & En tant qu'administrateur clinique, je veux suivre le taux d'occupation afin d'ajuster les horaires. & Could & R3 \\
+US8 & En tant que super-administrateur, je veux suspendre une clinique impayée. & Could & R3 \\
+\bottomrule
+\end{longtable}
+
+\section*{Conclusion}
+Ce chapitre a identifié les acteurs, les besoins fonctionnels et non fonctionnels, puis présenté le diagramme de cas d'utilisation et le backlog. Le chapitre suivant décrit l'architecture et la conception qui répondent à ces besoins.

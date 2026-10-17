@@ -1,0 +1,46 @@
+% !TEX root = ../main.tex
+\chapter{Réalisation}\label{ch:realisation}
+
+\section*{Introduction}
+Ce chapitre présente l'environnement de travail, puis le travail réalisé dans chaque release, illustré par des captures d'écran de l'application.
+
+\section{Environnement de travail}
+\begin{table}[H]\centering
+\caption{Environnement de développement}\label{tab:env}
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Outil} & \textbf{Usage} \\
+\midrule
+IntelliJ IDEA, VS Code & Développement back-end et front-end. \\
+Git, GitHub & Gestion du code source, revues de code par \textit{pull request}. \\
+Jira & Suivi du backlog et des sprints. \\
+Docker Desktop & Exécution locale de PostgreSQL, Keycloak et RabbitMQ. \\
+Postman & Tests manuels de l'API. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Release 1 : socle et agendas}
+\subsection{Backlog de la release}
+Cette release couvre les histoires US1 à US3 (tableau~\ref{tab:backlog}) : authentification, gestion des cliniques et des praticiens, et génération des créneaux.
+
+\subsection{Interfaces réalisées}
+\insererfigure[0.9]{captures/agenda-praticien.png}{Agenda hebdomadaire d'un praticien}{fig:agenda}
+\todo{Ajouter vos captures dans figures/captures/ : le cadre rouge disparaît dès que le fichier existe.}
+
+\section{Release 2 : réservation et rappels}
+\subsection{Backlog de la release}
+Cette release couvre les histoires US4 à US6 : réservation par le patient, rappels automatiques et déplacement par le secrétariat.
+
+\subsection{Interfaces réalisées}
+\insererfigure[0.9]{captures/reservation-patient.png}{Réservation d'un créneau par le patient}{fig:reservation}
+
+\section{Release 3 : pilotage et mise en production}
+\subsection{Backlog de la release}
+Cette release couvre les histoires US7 et US8 : tableau de bord de la clinique, gestion des abonnements et déploiement sur Kubernetes.
+
+\subsection{Interfaces réalisées}
+\insererfigure[0.9]{captures/tableau-de-bord.png}{Tableau de bord d'une clinique}{fig:dashboard}
+
+\section*{Conclusion}
+Ce chapitre a présenté la réalisation de \nomprojet{} release par release. Le chapitre suivant décrit la stratégie de test et le déploiement de la solution.

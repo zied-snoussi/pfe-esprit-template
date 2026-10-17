@@ -1,0 +1,40 @@
+% !TEX root = ../main.tex
+\chapter{Extraits de configuration}\label{annexe:configuration}
+
+% La note pédagogique interdit le code dans le corps du rapport : il va en annexe.
+
+\section{Filtre d'isolation des cliniques}
+Le filtre suivant ajoute automatiquement la clinique courante à toutes les requêtes JPA.
+
+\begin{small}
+\begin{verbatim}
+@FilterDef(name = "clinicFilter",
+           parameters = @ParamDef(name = "clinicId", type = UUID.class))
+@Filter(name = "clinicFilter", condition = "clinic_id = :clinicId")
+@MappedSuperclass
+public abstract class ClinicScopedEntity {
+    @Column(name = "clinic_id", nullable = false, updatable = false)
+    private UUID clinicId;
+}
+\end{verbatim}
+\end{small}
+
+\section{Déploiement Kubernetes}
+\begin{small}
+\begin{verbatim}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medibook-api
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/exemple/medibook-api:1.0.0
+          ports: [{ containerPort: 8080 }]
+          readinessProbe:
+            httpGet: { path: /actuator/health/readiness, port: 8080 }
+\end{verbatim}
+\end{small}

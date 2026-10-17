@@ -12,6 +12,7 @@ projet d'exemple **fictif** (« MediBook » chez « Nova Solutions ») que l'ét
 | Cahier des charges Word/PDF | `cahier/Cahier-des-charges.md` | `python cahier/build_cahier_docx.py` puis `scripts/export-pdf.ps1` |
 | Diagrammes UML (draw.io + PNG) | `diagrammes/_source/build_diagrams.py` | `npm run diagrammes` |
 | Figures Excalidraw du rapport | `rapport/figures/_source/diagrams.js` | `npm run figures` |
+| Brainstorming et prototype (Excalidraw) | `design-thinking/_source/*.js` | `npm run design` |
 | Présentation PPTX/PDF | `presentation/contenu.py` | `python presentation/build_deck.py` puis `scripts/export-pdf.ps1` |
 | Journal de bord | `journal/AAAA-MM-JJ.md` | — |
 
@@ -39,6 +40,7 @@ modifiez sa source puis régénérez, sinon la prochaine génération efface la 
 | `/pfe-init` | Première utilisation : remplacer le projet d'exemple par le vrai projet |
 | `/pfe-rapport` | Rédiger ou relire un chapitre du rapport |
 | `/pfe-diagrammes` | Ajouter ou modifier un diagramme UML ou une figure |
+| `/pfe-design-thinking` | Brainstorming, prototype basse fidélité (maquettes), personas en Excalidraw |
 | `/pfe-cahier` | Mettre à jour le cahier des charges et le régénérer |
 | `/pfe-presentation` | Préparer les diapositives d'une restitution ou de la soutenance |
 | `/pfe-coherence` | Vérifier que tous les livrables disent la même chose |

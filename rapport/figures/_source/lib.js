@@ -19,7 +19,7 @@ function createDiagram() {
       backgroundColor: bg, fillStyle: 'solid', strokeWidth: o.sw || 1,
       strokeColor: o.stroke || '#1e1e1e', strokeStyle: o.dashed ? 'dashed' : 'solid',
       roughness: 1, roundness: o.shape === 'ellipse' || o.shape === 'diamond' ? null : { type: 3 },
-      label: { text, fontSize: o.fs || 16, fontFamily: 2, textAlign: 'center', verticalAlign: 'middle' },
+      label: { text, fontSize: o.fs || 16, fontFamily: 2, textAlign: o.align || 'center', verticalAlign: o.valign || 'middle', strokeColor: o.textColor || '#1e1e1e' },
     };
     els.push(el);
     boxes[id] = { x, y, w, h };
@@ -69,6 +69,18 @@ function createDiagram() {
     els.push(el);
   }
 
+  // Arrow along absolute waypoints [[x, y], ...]
+  function path(pts, label, o = {}) {
+    const [x0, y0] = pts[0];
+    const el = {
+      type: 'arrow', id: nid('p'), x: x0, y: y0, points: pts.map(([x, y]) => [x - x0, y - y0]),
+      strokeColor: o.color || '#1e1e1e', strokeStyle: o.dashed ? 'dashed' : 'solid', strokeWidth: o.sw || 2,
+      roughness: 1, endArrowhead: 'arrow', startArrowhead: null,
+    };
+    if (label) el.label = { text: label, fontSize: o.fs || 15, fontFamily: 2 };
+    els.push(el);
+  }
+
   function legend(x, y, items) {
     text(x, y, 'Légende', 16, { bold: true });
     items.forEach(([bg, label, o = {}], i) => {
@@ -77,7 +89,7 @@ function createDiagram() {
     });
   }
 
-  return { els, box, zone, text, arrow, legend };
+  return { els, box, zone, text, arrow, path, legend, nid };
 }
 
 module.exports = { C, STROKE, createDiagram };

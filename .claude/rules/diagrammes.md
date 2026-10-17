@@ -2,6 +2,7 @@
 paths:
   - "diagrammes/**"
   - "rapport/figures/_source/**"
+  - "design-thinking/_source/**"
 ---
 
 # Règles des diagrammes

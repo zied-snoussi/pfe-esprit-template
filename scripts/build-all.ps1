@@ -9,6 +9,7 @@ function Run([string]$exe, [string[]]$arguments) {
 Run python @("diagrammes/_source/build_diagrams.py")
 Run node @("diagrammes/_source/render.js")
 Run node @("rapport/figures/_source/render.js", "rapport/figures")
+Run node @("design-thinking/_source/render.js", "design-thinking")
 & powershell -NoProfile -ExecutionPolicy Bypass -File rapport/build.ps1
 Run python @("cahier/build_cahier_docx.py")
 Run python @("presentation/build_deck.py")

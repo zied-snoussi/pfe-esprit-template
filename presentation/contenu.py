@@ -45,12 +45,18 @@ SLIDES = [
 
     {"type": "section", "number": "02", "title": "Solution proposée", "subtitle": "Une plateforme, trois espaces"},
 
+    {"type": "image", "title": "Brainstorming", "subtitle": "Dix thèmes recensés avec l'équipe au Sprint 0",
+     "image": "design-thinking/png/brainstorming.png", "caption": "Tableau de brainstorming (Excalidraw)"},
+
     {"type": "cartes", "title": "MediBook", "subtitle": "Trois espaces sur une même plateforme",
      "cards": [("Espace patient", "Rechercher un praticien, réserver, déplacer ou annuler un rendez-vous."),
                ("Espace clinique", "Agendas des praticiens, rendez-vous du jour, rappels automatiques."),
                ("Console", "Création des cliniques, abonnements et supervision de la plateforme.")]},
 
     {"type": "section", "number": "03", "title": "Analyse et conception", "subtitle": "Besoins, architecture, UML"},
+
+    {"type": "image", "title": "Prototype", "subtitle": "Réserver en quatre écrans, validés avant le développement",
+     "image": "design-thinking/png/prototype.png", "caption": "Maquettes basse fidélité (Excalidraw)"},
 
     {"type": "image", "title": "Cas d'utilisation", "subtitle": "Cinq acteurs, quatre familles de fonctions",
      "image": "diagrammes/png/01-cas-utilisation-global.png", "caption": "Diagramme de cas d'utilisation global"},

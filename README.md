@@ -8,12 +8,18 @@ cohérente et régénérable :
 - 📄 **Cahier des charges** écrit en Markdown → Word → PDF (table des matières, diagrammes insérés)
 - 🧩 **Diagrammes UML** générés par script (draw.io) : cas d'utilisation, classes, séquence, activité, états, déploiement
 - ✏️ **Figures Excalidraw** (architecture, CI/CD) au style croquis
+- 💡 **Design Thinking en Excalidraw** : tableau de brainstorming (post-it) et prototype basse fidélité
+  (maquettes mobile et web du parcours), éditables dans Obsidian Excalidraw
 - 🎞️ **Présentation** PowerPoint 16:9 générée depuis un fichier de contenu
-- 🤖 **Claude Code** : `CLAUDE.md`, règles, 7 skills (`/pfe-init`, `/pfe-rapport`, `/pfe-diagrammes`,
+- 🤖 **Claude Code** : `CLAUDE.md`, règles, 8 skills (`/pfe-init`, `/pfe-rapport`, `/pfe-diagrammes`, `/pfe-design-thinking`,
   `/pfe-cahier`, `/pfe-presentation`, `/pfe-coherence`, `/pfe-journal`) et serveurs MCP
 
 > Tout le contenu fourni est un **exemple fictif** : « MediBook », une plateforme de prise de rendez-vous pour
 > cliniques, réalisée chez « Nova Solutions » par « Prénom NOM ». Remplacez-le par votre projet.
+
+| Brainstorming | Prototype |
+|---|---|
+| ![Brainstorming](design-thinking/png/brainstorming.png) | ![Prototype](design-thinking/png/prototype.png) |
 
 | Rapport | Page intérieure | Présentation |
 |---|---|---|
@@ -39,6 +45,7 @@ cohérente et régénérable :
 | Tout | `sh scripts/build-all.sh` ou `powershell -ExecutionPolicy Bypass -File scripts/build-all.ps1` | tout ci-dessous |
 | Diagrammes UML | `npm run diagrammes` | `diagrammes/*.drawio`, `diagrammes/png/`, `rapport/figures/uml/` |
 | Figures Excalidraw | `npm run figures` | `rapport/figures/*.png`, `rapport/figures/excalidraw/` |
+| Brainstorming et prototype | `npm run design` | `design-thinking/*.excalidraw.md`, `design-thinking/png/`, `rapport/figures/design-thinking/` |
 | Rapport | `sh rapport/build.sh` ou `powershell -ExecutionPolicy Bypass -File rapport/build.ps1` | `rapport/main.pdf` |
 | Cahier des charges | `python cahier/build_cahier_docx.py` | `cahier/Cahier-des-charges.docx` |
 | Présentation | `python presentation/build_deck.py` | `presentation/Presentation.pptx` |
@@ -68,6 +75,7 @@ rapport/
 cahier/                      ← Cahier-des-charges.md + build_cahier_docx.py
 diagrammes/_source/          ← build_diagrams.py (UML), drawio.py (aides), render.js (PNG)
 presentation/                ← contenu.py (texte des diapositives) + build_deck.py (mise en page)
+design-thinking/             ← brainstorming.excalidraw.md, prototype.excalidraw.md, png/, _source/ (générateurs)
 journal/                     ← journal de bord hebdomadaire
 docs/guide-pfe-esprit.md     ← calendrier type et règles de mise en forme
 scripts/                     ← build-all, export-pdf
@@ -80,7 +88,7 @@ scripts/                     ← build-all, export-pdf
   un cadre rouge « Figure à produire », on peut donc rédiger avant d'avoir les images.
 - `\insererfigurepaysage{...}` pour un grand diagramme sur une page en paysage.
 - `\begin{definition}{Terme} ... \end{definition}` pour les encadrés de définition.
-- Logos : déposez `rapport/figures/logos/esprit.png` et `entreprise.png` (non fournis).
+- Logos : `rapport/figures/logos/esprit.png` est fourni ; ajoutez `entreprise.png` (logo de votre organisme d'accueil).
 
 ## Claude Code
 
@@ -90,6 +98,7 @@ Exemples de demandes :
 - `/pfe-init` : « mon sujet est ... chez ..., encadré par ... »
 - `/pfe-rapport` : « rédige l'état de l'art en comparant Jira, Trello et Asana », « relis le chapitre 3 »
 - `/pfe-diagrammes` : « ajoute un diagramme de séquence pour l'annulation d'un rendez-vous »
+- `/pfe-design-thinking` : « voici les idées de notre brainstorming : ... », « dessine les maquettes du parcours d'inscription »
 - `/pfe-presentation` : « prépare ma 1re restitution de 12 minutes »
 - `/pfe-coherence` : « j'ai changé la date de fin, mets tout à jour »
 - `/pfe-journal` : « voici ma semaine : ... »
